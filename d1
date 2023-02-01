@@ -1,1 +1,79 @@
+704. 二分查找 
+思路简单，实现需要注意细节，左闭右闭最符合直觉
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+            int i = 0;
+            int j = nums.size()-1;
+            int p = i+(j-i)/2;
+            while(i<=j){
+                cout<<i<<endl;
+                if(nums[p]==target){
+                    return p;
+                }
+                if(nums[p]<target){
+                    i = p+1;
+                } else if(nums[p]>target) {
+                    j = p-1;
+                }
+                p = i+(j-i)/2;
+            }
+            return -1;
+    }
+};
+左闭右开要注意排除掉右边界
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+            int i = 0;
+            int j = nums.size();
+            int p = i+(j-i)/2;
+            while(i<j){
+                cout<<i<<endl;
+                if(nums[p]==target){
+                    return p;
+                }
+                if(nums[p]<target){
+                    i = p+1;
+                } else if(nums[p]>target) {
+                    j = p;
+                }
+                p = i+(j-i)/2;
+            }
+            return -1;
+    }
+};
 
+27. 移除元素
+暴力解法注意外层便利和内层遍历的方向。外层从后往前，内层从前往后才能处理连续的元素都等于目标值的情况。
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int size=nums.size();
+        for(int i = nums.size()-1;i>=0;i--){
+            if(nums[i]==val){
+                for(int j=i;j<nums.size()-1;j++){
+                    nums[j]=nums[j+1];
+                }
+                nums.pop_back();
+                size--;
+            }
+        }
+        return size;
+    }
+};
+双指针法
+思路一下子就想到了，但是没能简化成代码逻辑
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int i=0;
+        for(int j=0;j<nums.size();j++){
+            if(nums[j]!=val){
+                nums[i]=nums[j];
+                i++;
+            }
+        }
+        return i;
+    }
+};
