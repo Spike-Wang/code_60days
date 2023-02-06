@@ -12,3 +12,5 @@
 不难
 
 需要复习一下c++里set map容器的知识
+set, multi_set, map, multi_map底层实现是红黑树，有序
+unordered_set, unordered_map底层实现是哈希表，无序
